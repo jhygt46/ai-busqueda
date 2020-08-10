@@ -1,19 +1,14 @@
 console.log('1');
+
 // Connect to server
-var io = require('socket.io-client');
-var socket = io.connect('http://35.226.249.89:80', {reconnect: true});
+var io = require('socket.io-client')
+var socket = io.connect('http://35.226.249.89:80', { reconnect: true });
 
 console.log('2');
 
 // Add a connect listener
-io.on('connection', function(socket) {
-
-    console.log('Client connected.');
-
-    // Disconnect listener
-    socket.on('disconnect', function() {
-        console.log('Client disconnected.');
-    });
+socket.on('connect', function(socket) {
+    console.log('Connected!');
 });
 
 console.log('3');
