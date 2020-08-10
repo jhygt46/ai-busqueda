@@ -3,7 +3,7 @@ var socket = io.connect('http://35.226.249.89:80', { reconnect: true });
 
 socket.on('connect', function(socket) {
     console.log('Connected!');
-    socket.on('correo', function(data){
+    socket.on('nuevo_correo', function(data){
         console.log(data);
     });
 });
