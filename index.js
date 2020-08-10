@@ -6,8 +6,14 @@ var socket = io.connect('http://35.226.249.89:80', {reconnect: true});
 console.log('2');
 
 // Add a connect listener
-socket.on('connect', function(socket) { 
-  console.log('Connected!');
+io.on('connection', function(socket) {
+
+    console.log('Client connected.');
+
+    // Disconnect listener
+    socket.on('disconnect', function() {
+        console.log('Client disconnected.');
+    });
 });
 
 console.log('3');
