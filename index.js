@@ -1,7 +1,16 @@
-var socket = require('socket.io-client')('http://35.226.249.89:80');
-socket.on('connect', function(){ console.log("CONNECT"); });
-socket.on('event', function(data){ console.log(data); });
-socket.on('disconnect', function(){ console.log("DISCONNECT"); });
+console.log('1');
+// Connect to server
+var io = require('socket.io-client');
+var socket = io.connect('http://35.226.249.89:80', {reconnect: true});
+
+console.log('2');
+
+// Add a connect listener
+socket.on('connect', function(socket) { 
+  console.log('Connected!');
+});
+
+console.log('3');
 
 /*
 var io = require('socket.io-client');
