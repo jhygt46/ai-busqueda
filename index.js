@@ -1,17 +1,12 @@
-console.log('1');
-
-// Connect to server
 var io = require('socket.io-client')
 var socket = io.connect('http://35.226.249.89:80', { reconnect: true });
 
-console.log('2');
-
-// Add a connect listener
 socket.on('connect', function(socket) {
     console.log('Connected!');
+    socket.on('correo', function(data){
+        console.log(data);
+    });
 });
-
-console.log('3');
 
 /*
 var io = require('socket.io-client');
