@@ -7,10 +7,11 @@ socket.on('connect', function(socket) {
 socket.on('nuevo_correo', function(data){
     console.log(data);
 });
-socket.on("*",function(event,data) {
-    console.log(event);
+
+socket.onevent = function(data){
     console.log(data);
-});
+}
+
 
 const express = require("express");
 const app = express();
