@@ -4,13 +4,17 @@ var socket = io.connect('http://35.226.249.89:80', { reconnect: true });
 socket.on('connect', function(socket) {
     console.log('Connected!');
 });
+/*
 socket.on('nuevo_correo', function(data){
     console.log(data);
 });
-
+*/
 socket.onevent = function(data){
     console.log(data);
 }
+socket.on('disconnect', function(socket) {
+    console.log('Disconnected!');
+});
 
 
 const express = require("express");
