@@ -112,20 +112,3 @@ function busqueda(id, locs, conf){
     }
 
 }
-
-/*
-
-app.listen(config.port, () => {
-    console.log("El servidor está inicializado en el puerto "+config.port);
-    socket.on('connect', function(socket) { 
-        console.log('Connected!');
-    });
-});
-
-app.get('/busqueda', urlencodedParser, function(req, res){
-
-	res.setHeader('Content-Type', 'application/json');
-	console.log(req.body.id);
-
-});
-*/
