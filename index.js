@@ -33,10 +33,6 @@ const app = express();
 
 var helpers = require('./helpers');
 
-const fs = require("fs");
-
-var config = JSON.parse(fs.readFileSync('./config.json'));
-
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 var cors = require('cors');
@@ -45,8 +41,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.listen(config.port, () => {
-    console.log("El servidor está inicializado en el puerto "+config.port);
+app.listen(helpers.getPort(), () => {
+    console.log("El servidor está inicializado en el puerto "+helpers.getPort());
 });
 
 var empresas = [{info: '', categorias: [{sku: 1, precio: 1000}, {id: 1, precio: {}}], locales: [{lat: 1, lng: 1}, {lat: 2, lng: 2}]}];
