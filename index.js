@@ -8,11 +8,12 @@ var socket = io.connect(config.socket_url, { reconnect: true });
 socket.on('nuevo_correo', function(data){
     console.log(data);
 });
-socket.on('connect', function(socket) {
+socket.on('connect', function() {
     console.log('Connected!');
-    console.log(socket);
 });
 socket.onevent = function(data){
+    console.log(data);
+    /*
     switch (packet.data[0]) {
         case 'cambiar_precio':
             cambiar_precio(packet.data[1]);
@@ -21,8 +22,9 @@ socket.onevent = function(data){
             cambiar_cantidad(packet.data[1]);
         break;
     }
+    */
 }
-socket.on('disconnect', function(socket) {
+socket.on('disconnect', function() {
     console.log('Disconnected!');
 });
 
