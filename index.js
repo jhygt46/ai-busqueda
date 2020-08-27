@@ -1,13 +1,13 @@
-/*
-var io = require('socket.io-client')
-var socket = io.connect('http://35.226.249.89:80', { reconnect: true });
+var fs = require('fs');
+var helpers = require('./helpers');
+var config = JSON.parse(fs.readFileSync('./config.json'));
 
+var io = require('socket.io-client');
+var socket = io.connect(config.socket_url, { reconnect: true });
 
 socket.on('nuevo_correo', function(data){
     console.log(data);
 });
-
-
 socket.on('connect', function(socket) {
     console.log('Connected!');
 });
@@ -26,14 +26,10 @@ socket.onevent = function(data){
 socket.on('disconnect', function(socket) {
     console.log('Disconnected!');
 });
-*/
+
 
 const express = require("express");
 const app = express();
-
-var fs = require('fs');
-var helpers = require('./helpers');
-var config = JSON.parse(fs.readFileSync('./config.json'));
 
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
