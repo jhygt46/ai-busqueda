@@ -2,8 +2,6 @@ var fs = require('fs');
 var helpers = require('./helpers');
 var config = JSON.parse(fs.readFileSync('./config.json'));
 
-console.log(config.socket_url);
-
 var io = require('socket.io-client');
 var socket = io.connect(config.socket_url, { reconnect: true });
 
@@ -12,9 +10,9 @@ socket.on('nuevo_correo', function(data){
 });
 socket.on('connect', function(socket) {
     console.log('Connected!');
+    console.log(socket);
 });
 socket.onevent = function(data){
-
     switch (packet.data[0]) {
         case 'cambiar_precio':
             cambiar_precio(packet.data[1]);
@@ -23,12 +21,10 @@ socket.onevent = function(data){
             cambiar_cantidad(packet.data[1]);
         break;
     }
-
 }
 socket.on('disconnect', function(socket) {
     console.log('Disconnected!');
 });
-
 
 const express = require("express");
 const app = express();
