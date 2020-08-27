@@ -31,7 +31,9 @@ socket.on('disconnect', function(socket) {
 const express = require("express");
 const app = express();
 
+var fs = require('fs');
 var helpers = require('./helpers');
+var config = JSON.parse(fs.readFileSync('./config.json'));
 
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
@@ -41,9 +43,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.listen(helpers.getPort(), () => {
-    console.log("El servidor está inicializado en el puerto "+helpers.getPort());
-});
+
 
 var empresas = [{info: '', categorias: [{sku: 1, precio: 1000}, {id: 1, precio: {}}], locales: [{lat: 1, lng: 1}, {lat: 2, lng: 2}]}];
 var data = {};
@@ -53,7 +53,7 @@ var obj_precio = { base: 2000, loc: { 3: 2200, 5: 2100 }};
 
 
 
-app.get('/', urlencodedParser, function(req, res){
+app.get('/', function(req, res){
 
     res.setHeader('Content-Type', 'application/json');
     data[0] = {};
@@ -62,7 +62,6 @@ app.get('/', urlencodedParser, function(req, res){
     //res.end(JSON.stringify(res.end(busqueda(1, [0, 1]))));
 
 });
-
 app.post('/buscar', urlencodedParser, function(req, res){
 
 	res.setHeader('Content-Type', 'application/json');
@@ -73,12 +72,8 @@ app.post('/buscar', urlencodedParser, function(req, res){
 
 });
 
-function puntaje_id(id, calidad, precio, cantidad){
-
-}
-function puntaje_sku(sku, precio, cantidad){
-    
-}
+function puntaje_id(id, calidad, precio, cantidad){}
+function puntaje_sku(sku, precio, cantidad){}
 function busqueda(id, locs, conf){
 
     var distancia = 0;
@@ -112,3 +107,7 @@ function busqueda(id, locs, conf){
     }
 
 }
+
+app.listen(config.port, () => {
+    fs.appendFile('init.log', 'Servidor iniciado a las ' + new Date().toLocaleString() + ' en puerto ' + config.port + '\n', function(err){ if(err) return console.log(err) });
+});
