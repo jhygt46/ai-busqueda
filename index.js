@@ -2,6 +2,8 @@ var fs = require('fs');
 var helpers = require('./helpers');
 var config = JSON.parse(fs.readFileSync('./config.json'));
 
+console.log(config.socket_url);
+
 var io = require('socket.io-client');
 var socket = io.connect(config.socket_url, { reconnect: true });
 
